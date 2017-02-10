@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var axios = require('axios');
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var search = require('./routes/search');
 var app = express();
 require('dotenv').config();
 
@@ -31,12 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.get('/searching', function(req, res,next){
-const google_key=process.env.GOOGLE_KEY;
-const val = req.query.location;
-const loc = 'https://maps.googleapis.com/maps/api/geocode/json?address='+ val+ google_key;
- console.log(val);
-});
+app.use('/search',search);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
