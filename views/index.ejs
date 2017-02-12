@@ -24,8 +24,10 @@
     <div id="forecast">
       <ul>
         <%forecast.forEach(function(day){ %>
-          <li><%=Math.round((day.temperatureMin +day.temperatureMax)/2,2)%>
-              <p><%=day.summary%></p>
+          <li id="day">
+          <p><%=moment.unix(day.time).format('dddd')%></p>
+          <%=Math.round((day.temperatureMin +day.temperatureMax)/2,2)%>
+          <p><%=day.summary%></p>
           </li>
         <%})%>
       </ul>

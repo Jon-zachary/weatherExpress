@@ -8,9 +8,10 @@ var axios = require('axios');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var search = require('./routes/search');
+var moment = require('moment');
 var app = express();
 require('dotenv').config();
-
+app.locals.moment=moment;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
