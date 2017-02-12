@@ -12,5 +12,9 @@
     	<input id="location" type="text" name="location" />
     	<button type="submit">Search</button>
     </form>
+	<% if(coords) { %>
+    <p><%=coords.lat%></p>
+    <p><%=coords.lng%></p>
+    <%}%>
   </body>
 </html>

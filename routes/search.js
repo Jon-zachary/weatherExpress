@@ -14,7 +14,7 @@ axios.get(url)
   const coords ={lat:response.data.results[0].geometry.location.lat,
                  lng:response.data.results[0].geometry.location.lng};
                  console.log(coords.lat);
-  res.send(coords);
+  res.render("index",{title: "WeatherExpress",coords:coords});
   });
     
 });
