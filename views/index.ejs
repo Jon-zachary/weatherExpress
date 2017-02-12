@@ -3,6 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="./javascripts/index.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
@@ -12,9 +13,22 @@
     	<input id="location" type="text" name="location" />
     	<button type="submit">Search</button>
     </form>
-	<% if(coords) { %>
-    <p><%=coords.lat%></p>
-    <p><%=coords.lng%></p>
-    <%}%>
+    <%#<form action="/search/current" method ="GET">%>
+    <button onclick="useCurrentLoc()" > Use Current Location</button>
+    <%#</form>%>
+    
+    <p id="lat"><%= coords.lat %></p>
+    <p id="lng"><%= coords.lng %></p>
+    <p> temperature: <%= temp %></p>
+    <div id="currentLoc"></div>
+    <div id="forecast">
+      <ul>
+        <%forecast.forEach(function(day){ %>
+          <li><%=Math.round((day.temperatureMin +day.temperatureMax)/2,2)%>
+              <p><%=day.summary%></p>
+          </li>
+        <%})%>
+      </ul>
+    </div>
   </body>
 </html>

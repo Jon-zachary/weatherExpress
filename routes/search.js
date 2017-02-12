@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
+router.get('/current',function(req,res,next){
+  res.send('hello');
+});
 
 router.get('/', function(req,res,next){
 const google_key=process.env.GOOGLE_KEY; 
@@ -12,14 +15,15 @@ axios.get(url)
 .then(function(response) {
   const coords ={lat:response.data.results[0].geometry.location.lat,
                  lng:response.data.results[0].geometry.location.lng};
-                 res.locals.coords=coords;
-  res.render("index",{title: "WeatherExpress",coords:coords});
-  const url2='https://api.darksky.net/forecast/e65e7156ea5f28a13d13f2e0f05128c2/'+ coords.lat + ',' +coords.lng;
+  
+  const url2=`https://api.darksky.net/forecast/${dark_sky_key}/${coords.lat},${coords.lng}/`;
   axios.get(url2)
   .then(function(response) {
-    console.log(response.data.currently.temperature);
-  });
-
+    const temp= response.data.currently.temperature;
+    const forecast = response.data.daily.data;
+    console.log(forecast);
+    res.render("index",{title: "WeatherExpress",coords:coords,temp:temp,forecast:forecast});
+    });
   });
 });
 

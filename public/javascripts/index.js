@@ -1,13 +1,12 @@
-// console.log('index.js firing');
 
-// $(function(){
-//  $('#location').on('keyup', function(e){
-//    if(e.keyCode === 13) {
-//     console.log('enter key pressed');
-//      var parameters = { location: $(this).val() };
-//        $.get( '/search',parameters, function(data) {
-//        $('#results').html(data);
-//      });
-//     }
-//  });
-// });
+function success(position) {
+   const pos = position.coords;
+   document.querySelector("#lat").innerHTML=pos.latitude;
+   document.querySelector("#lng").innerHTML=pos.longitude;
+
+}
+function useCurrentLoc() {
+  document.querySelector("#lat").innerHTML="loading...";
+  document.querySelector("#lng").innerHTML="loading...";
+  navigator.geolocation.getCurrentPosition(success);
+}
