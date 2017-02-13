@@ -4,33 +4,43 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="./javascripts/index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    Enter Location
-    <form action="/search" method="GET">
-    	<input id="location" type="text" name="location" />
-    	<button type="submit">Search</button>
+  <div class="container">
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo"><%= title %></a>
+      <ul class="right hide-on-med-and-down">
+       <li><a href="#!">Login</a></li>
+        <li><a href="#!">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+    <form action="/search" method="GET" id="searchForm">
+      <div class="input-field">
+      <i class="material-icons prefix">search</i>
+      <label for="icon_prefix"></label>
+      <input class="icon-prefix" id="location" type="text" name="location" />
+      </div>
+      <button type="submit" class="btn">Search</button>
+      <button onclick="useCurrentLoc()" class="btn"> Use Current Location</button>
     </form>
-    <%#<form action="/search/current" method ="GET">%>
-    <button onclick="useCurrentLoc()" > Use Current Location</button>
-    <%#</form>%>
-    
-    <p id="lat"><%= coords.lat %></p>
-    <p id="lng"><%= coords.lng %></p>
-    <p> temperature: <%= temp %></p>
+    <p class="card color orange lighten-4" id="current">  current temperature in <%=loc%>: <%= Math.round(temp,2) %></p>
     <div id="currentLoc"></div>
     <div id="forecast">
       <ul>
         <%forecast.forEach(function(day){ %>
-          <li id="day">
-          <p><%=moment.unix(day.time).format('dddd')%></p>
-          <%=Math.round((day.temperatureMin +day.temperatureMax)/2,2)%>
+          <li id="day" class="card blue lighten-3">
+          <p><strong><%=moment.unix(day.time).format('dddd')%></strong></p>
+          <%=Math.round((day.temperatureMin +day.temperatureMax)/2,2)+' degrees'%>
           <p><%=day.summary%></p>
           </li>
         <%})%>
       </ul>
     </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
   </body>
 </html>

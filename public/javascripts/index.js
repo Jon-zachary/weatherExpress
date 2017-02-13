@@ -1,12 +1,11 @@
 
 function success(position) {
    const pos = position.coords;
-   document.querySelector("#lat").innerHTML=pos.latitude;
-   document.querySelector("#lng").innerHTML=pos.longitude;
+   document.querySelector('#location').value=pos.latitude+","+pos.longitude;
+   document.forms["searchForm"].submit();
 
 }
 function useCurrentLoc() {
-  document.querySelector("#lat").innerHTML="loading...";
-  document.querySelector("#lng").innerHTML="loading...";
+ document.querySelector('#location').value='Loading...';
   navigator.geolocation.getCurrentPosition(success);
 }

@@ -15,14 +15,14 @@ axios.get(url)
 .then(function(response) {
   const coords ={lat:response.data.results[0].geometry.location.lat,
                  lng:response.data.results[0].geometry.location.lng};
-  
+  const loc = response.data.results[0].address_components[1].short_name;
+  console.log(loc);
   const url2=`https://api.darksky.net/forecast/${dark_sky_key}/${coords.lat},${coords.lng}/`;
   axios.get(url2)
   .then(function(response) {
     const temp= response.data.currently.temperature;
     const forecast = response.data.daily.data;
-    console.log(forecast);
-    res.render("index",{title: "WeatherExpress",coords:coords,temp:temp,forecast:forecast});
+    res.render("index",{title: "WeatherExpress",coords:coords,temp:temp,forecast:forecast,loc:loc});
     });
   });
 });
