@@ -2,7 +2,7 @@
   "development": {
     "username": "jonzachary",
     "password": null,
-    "database": "fazbook_development",
+    "database": "weatherExpress_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

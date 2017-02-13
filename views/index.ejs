@@ -6,14 +6,15 @@
     <script src="./javascripts/index.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
-  <body>
+
+  <body >
   <div class="container">
   <nav>
     <div class="nav-wrapper">
       <a class="brand-logo"><%= title %></a>
       <ul class="right hide-on-med-and-down">
-       <li><a href="#!">Login</a></li>
-        <li><a href="#!">Logout</a></li>
+       <li><a href="/auth/register">Register</a></li>
+        <li><a href="/auth/login">Login</a></li>
       </ul>
     </div>
   </nav>
@@ -26,7 +27,7 @@
       <button type="submit" class="btn">Search</button>
       <button onclick="useCurrentLoc()" class="btn"> Use Current Location</button>
     </form>
-    <p class="card color orange lighten-4" id="current">  current temperature in <%=loc%>: <%= Math.round(temp,2) %></p>
+    <p class="card color orange lighten-4" id="current">  Current Temperature in <%=loc%>: <%= Math.round(temp,2) %></p>
     <div id="currentLoc"></div>
     <div id="forecast">
       <ul>

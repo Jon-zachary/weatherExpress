@@ -2,9 +2,6 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
-router.get('/current',function(req,res,next){
-  res.send('hello');
-});
 
 router.get('/', function(req,res,next){
 const google_key=process.env.GOOGLE_KEY; 
@@ -15,7 +12,7 @@ axios.get(url)
 .then(function(response) {
   const coords ={lat:response.data.results[0].geometry.location.lat,
                  lng:response.data.results[0].geometry.location.lng};
-  const loc = response.data.results[0].address_components[1].short_name;
+  const loc = response.data.results[0].address_components[2].long_name;
   console.log(loc);
   const url2=`https://api.darksky.net/forecast/${dark_sky_key}/${coords.lat},${coords.lng}/`;
   axios.get(url2)
