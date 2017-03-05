@@ -6,6 +6,6 @@ function success(position) {
 
 }
 function useCurrentLoc() {
- document.querySelector('#location').value='Loading...';
+ 
   navigator.geolocation.getCurrentPosition(success);
 }
